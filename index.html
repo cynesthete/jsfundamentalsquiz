@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!--Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Varta&display=swap" rel="stylesheet">
+    <!--Style.css-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Test Your Knowledge</title>
+</head>
+
+<body>
+    <!--Bootstrap Grid-->
+    <div class="container">
+
+        <!--Jumbotron-->
+        <div class="jumbotron text-center">
+            <h1 class="text-center">
+                <strong>Javascript Fundamentals Quiz</strong>
+            </h1>
+            <h3 class="text-center">Test Your Might</h3>
+            <button id="generate" class="btn">START</button> 
+            <h5 id="timer" class="hide">Timer: <span id="clock-timer">100</span></h5>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="question">
+            
+                </div> 
+                <div id="choices">
+
+                </div> 
+                <div id="correct">
+
+                </div>   
+                <div id="wrong">
+
+                </div>          
+            </div>
+
+        </div>
+
+
+
+        <script src="quiz.js"></script>
+</body>
+
+</html>
