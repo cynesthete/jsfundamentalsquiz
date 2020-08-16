@@ -121,6 +121,7 @@ function subtractTime() {
 // Timer should clear when quiz ends
 function endQuiz() {
     clearInterval(gameTimer);
+    console.log(gameTimer)
 }
 
 // Populate questions and choices
