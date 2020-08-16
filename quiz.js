@@ -5,6 +5,9 @@ var timer = document.getElementById("timer")
 var questionLine = document.getElementById("question")
 var choicesLine = document.getElementById("choices")
 
+var correctAnswer = 0;
+var currentIndex = 0;
+
 var timeKeeper = 100;
 //var currentIndex = 0;
 var gameTimer;
@@ -12,74 +15,74 @@ var gameTimer;
 // Questions + Choices
 var questionsArray = [
     {
-        question: "What is sheep?",
+        question: "Which of the following is NOT a JS data type?",
         choices: [
-            "friend", "no", "why?", "ok"
+            "String", "Number", "Object", "Syntax"
         ],
-        answer: "why?"
+        answer: "Syntax"
     },
     {
-        question: "What is corn?",
+        question: "What does DOM stand for?",
         choices: [
-            "friend", "no", "why?", "ok"
+            "Don't Order More", "Document Oriented Meaning", "Document Object Model", "Do Orbs Multiply"
         ],
-        answer: "why?"
+        answer: "Document Object Model"
     },
     {
-        question: "What is why?",
+        question: "Which of these is NOT a loop?",
         choices: [
-            "friend", "no", "why?", "ok"
+            "For", "While", "Do While", "Will Do"
         ],
-        answer: "why?"
+        answer: "Will Do"
     },
     {
-        question: "What is what?",
+        question: "In a for loop, which of the following is a condition?",
         choices: [
-            "friend", "no", "why?", "ok"
+            "var i =0", "i < 19", "i++", "&&"
         ],
-        answer: "why?"
+        answer: "i < 19"
     },
     {
-        question: "No?",
+        question: "What property of a NodeList reveals the number of elements?",
         choices: [
-            "friend", "no", "why?", "ok"
+            "Length", "Element", "Total", "Tag"
         ],
-        answer: "why?"
+        answer: "Length"
     },
     {
-        question: "How dare you?",
+        question: "Which of the following is NOT a logical operator?",
         choices: [
-            "friend", "no", "why?", "ok"
+            "&&", "||", "~", "!"
         ],
-        answer: "why?"
+        answer: "~"
     },
     {
-        question: "Is this question satisfactory?",
+        question: "Which of the following is NOT a comparison operator?",
         choices: [
-            "friend", "no", "why?", "ok"
+            ">", "!=", "&&", "!=="
         ],
-        answer: "why?"
+        answer: "&&"
     },
     {
-        question: "What is sheep?",
+        question: "Which of the following is most similar to a function?",
         choices: [
-            "friend", "no", "why?", "ok"
+            "Operator", "Method", "DOM", "API"
         ],
-        answer: "why?"
+        answer: "Method"
     },
     {
-        question: "What is sheep?",
+        question: "Arrays are __?",
         choices: [
-            "friend", "no", "why?", "ok"
+            "Unruly", "Methods", "Objects", "Booleans"
         ],
-        answer: "why?"
+        answer: "Objects"
     },
     {
-        question: "What is sheep?",
+        question: "Which of the following can be used to trigger a function?",
         choices: [
-            "friend", "no", "why?", "ok"
+            "Lemurs", "Returns", "Magic", "Events"
         ],
-        answer: "why?"
+        answer: "Events"
     },
     {
 
@@ -122,8 +125,6 @@ function endQuiz() {
 
 // Populate questions and choices
 function populateQuestions() {
-    var correctAnswer = 0;
-    var currentIndex = 0;
     var currentQuestion = questionsArray[currentIndex];
     questionLine.textContent = currentQuestion.question;
     choicesLine.innerHTML = "";
@@ -133,29 +134,23 @@ function populateQuestions() {
        choiceNode.setAttribute("value", choice);
        choiceNode.textContent = choice;
        choiceNode.onclick = checkAnswer;
-       choiceNode.addEventListener("click", function () {
-           console.log("I work!")
-           console.log(choiceNode.value)
-           console.log(event.target.value)
-           console.dir(questionsArray[correctAnswer].answer)
-           // if (event.target.value===answer)
-           console.log("this worked!")
-           if (event.target.value === questionsArray[correctAnswer].answer) {
-            console.log("this worked!")
-            currentIndex++
-            correctAnswer++
-            // move to next question
-           }else {
-                subtractTime();     
-           }
-       })
+
     choicesLine.appendChild(choiceNode);
     });
 }
 
 function checkAnswer() {
-
-}
+    if (this.value === questionsArray[currentIndex].answer) {
+        console.log("this worked!")
+        currentIndex++
+        correctAnswer++
+        populateQuestions();
+       }else {
+            subtractTime(); 
+            currentIndex++;
+            populateQuestions();    
+       }
+   };
 
 // display "GAME OVER" when TIMER hits zero
 
