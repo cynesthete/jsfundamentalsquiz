@@ -18,33 +18,46 @@
 <body>
     <!--Bootstrap Grid-->
     <div class="container">
-
+        <header><a href="./highscore.html">High Score</a></header>
         <!--Jumbotron-->
         <div class="jumbotron text-center">
             <h1 class="text-center">
                 <strong>Javascript Fundamentals Quiz</strong>
             </h1>
             <h3 class="text-center">Test Your Might</h3>
-            <button id="generate" class="btn">START</button> 
+            <button id="generate" class="btn">START</button>
             <h5 id="timer" class="hide">Timer: <span id="clock-timer">100</span></h5>
         </div>
 
         <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="col-md-12 text-center" id="gameHolder">
                 <div id="question">
-            
-                </div> 
+
+                </div>
                 <div id="choices">
 
-                </div> 
+                </div>
                 <div id="correct">
 
-                </div>   
+                </div>
                 <div id="wrong">
 
-                </div>          
+                </div>
             </div>
 
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center hide" id="scoreKeeper">
+                <h1>Enter Initials To Save High Score</h1>
+                <p>Your Score Is: <span id="score"></span></p>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="initials" placeholder="Enter Initials">
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="submitButton">Submit</span>
+                    </div>
+                  </div>
+            </div>
         </div>
 
 

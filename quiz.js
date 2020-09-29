@@ -5,6 +5,11 @@ var timer = document.getElementById("timer")
 var questionLine = document.getElementById("question")
 var choicesLine = document.getElementById("choices")
 
+var scoreKeeper = document.getElementById("scoreKeeper")
+var gameHolder = document.getElementById("gameHolder")
+var submitButton = document.getElementById("submitButton")
+var initials = document.getElementById("initials")
+
 var correctAnswer = 0;
 var currentIndex = 0;
 
@@ -109,6 +114,7 @@ function timerCountdown() {
     timeClock.textContent=timeKeeper;
     if (timeKeeper <=0) {
         timeKeeper = 0;
+        timeClock.textContent=timeKeeper;
         endQuiz();
     }
 }
@@ -116,12 +122,21 @@ function timerCountdown() {
 // Incorrect answers should remove 10 seconds from timer
 function subtractTime() {
     timeKeeper = timeKeeper - 10;
+    if (timeKeeper >0) {
+        timeKeeper = 0;
+        timeClock.textContent=timeKeeper;
+        endQuiz();
+    }
 }
 
 // Timer should clear when quiz ends
 function endQuiz() {
     clearInterval(gameTimer);
-    console.log(gameTimer)
+    console.log(gameTimer);
+    gameHolder.classList.add("hide");
+    scoreKeeper.classList.remove("hide");
+    var score = document.getElementById("score");
+    score.textContent = timeKeeper;
 }
 
 // Populate questions and choices
@@ -153,10 +168,26 @@ function checkAnswer() {
        }
    };
 
+submitButton.addEventListener("click", function(){
+    var player = initials.value;
+    var final = timeKeeper;
+    var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];
+    var newScore = {
+        player: player,
+        score: final
+    };
+    highScores.push(newScore);
+    window.localStorage.setItem("highScores", JSON.stringify(highScores));
+    window.location.href = "highscore.html"
+})
+
 // display "GAME OVER" when TIMER hits zero
+
 
 
 // Local Storage (high score, enter user initials)
 
+//want to JSON stringify info when setting it, JSON parse info when getting it back
 
-
+var getHighscore = JSON.parse(window.localStorage.getItem("highScores")) || [];
+window.localStorage.setItem("highScores", JSON.stringify(getHighsscore));
