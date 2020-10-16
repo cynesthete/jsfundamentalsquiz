@@ -18,8 +18,7 @@ var timeKeeper = 100;
 var gameTimer;
 
 // Questions + Choices
-var questionsArray = [
-    {
+var questionsArray = [{
         question: "Which of the following is NOT a JS data type?",
         choices: [
             "String", "Number", "Object", "Syntax"
@@ -89,17 +88,14 @@ var questionsArray = [
         ],
         answer: "Events"
     },
-    {
-
-    }
 ];
 
 // Button should disappear on click and be replaced with timer
-startButton.addEventListener("click", function() {
-    console.log("I've been clicked"); 
+startButton.addEventListener("click", function () {
+    console.log("I've been clicked");
     startButton.setAttribute("class", "hide");
     timer.removeAttribute("class", "hide");
-startQuiz();
+    startQuiz();
 });
 
 function startQuiz() {
@@ -110,11 +106,11 @@ function startQuiz() {
 
 // Quiz should end when timer hits zero
 function timerCountdown() {
-    timeKeeper --;
-    timeClock.textContent=timeKeeper;
-    if (timeKeeper <=0) {
+    timeKeeper--;
+    timeClock.textContent = timeKeeper;
+    if (timeKeeper <= 0) {
         timeKeeper = 0;
-        timeClock.textContent=timeKeeper;
+        timeClock.textContent = timeKeeper;
         endQuiz();
     }
 }
@@ -122,9 +118,9 @@ function timerCountdown() {
 // Incorrect answers should remove 10 seconds from timer
 function subtractTime() {
     timeKeeper = timeKeeper - 10;
-    if (timeKeeper >0) {
+    if (timeKeeper < 0) {
         timeKeeper = 0;
-        timeClock.textContent=timeKeeper;
+        timeClock.textContent = timeKeeper;
         endQuiz();
     }
 }
@@ -144,31 +140,36 @@ function populateQuestions() {
     var currentQuestion = questionsArray[currentIndex];
     questionLine.textContent = currentQuestion.question;
     choicesLine.innerHTML = "";
-    currentQuestion.choices.forEach(function(choice) {
-       var choiceNode = document.createElement("button");
-       choiceNode.setAttribute("class", "choice");
-       choiceNode.setAttribute("value", choice);
-       choiceNode.textContent = choice;
-       choiceNode.onclick = checkAnswer;
+    currentQuestion.choices.forEach(function (choice) {
+        var choiceNode = document.createElement("button");
+        choiceNode.setAttribute("class", "choice");
+        choiceNode.setAttribute("value", choice);
+        choiceNode.textContent = choice;
+        choiceNode.onclick = checkAnswer;
 
-    choicesLine.appendChild(choiceNode);
+        choicesLine.appendChild(choiceNode);
     });
 }
 
 function checkAnswer() {
     if (this.value === questionsArray[currentIndex].answer) {
         console.log("this worked!")
-        currentIndex++
         correctAnswer++
+    } else {
+        subtractTime();
+    }
+    currentIndex++;
+    console.log(currentIndex);
+    console.log(questionsArray.length);
+    if (currentIndex === questionsArray.length) {
+        console.log("endQuiz function to be called");
+        endQuiz();
+    } else {
         populateQuestions();
-       }else {
-            subtractTime(); 
-            currentIndex++;
-            populateQuestions();    
-       }
-   };
+    }
+};
 
-submitButton.addEventListener("click", function(){
+submitButton.addEventListener("click", function () {
     var player = initials.value;
     var final = timeKeeper;
     var highScores = JSON.parse(window.localStorage.getItem("highScores")) || [];

@@ -26,3 +26,7 @@ printScore();
 clear.addEventListener("click", function(){
     clearHighScore();
 });
+
+returnBtn.addEventListener("click", function(){
+    window.location.href="index.html";
+});
