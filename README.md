@@ -1,6 +1,8 @@
 # jsfundamentalsquiz
 
-This quiz was designed to to one's basic knwoeldge of certain aspects of the Javascript programming language. It was designed to be answered within 100 seconds, with each incorrect answer subtracting 10 seconds from the overall time.
+This quiz was designed to to one's basic knowledge of certain aspects of the Javascript programming language. It was designed to be answered within 100 seconds, with each incorrect answer subtracting 10 seconds from the overall time.
+
+This project was recently updated and is now capable of storing user scores. Additional issues with the timer were also fixed.
 
 ![Screenshot of application](Assets/jsfundamentalsquiz_ss.png)
 
